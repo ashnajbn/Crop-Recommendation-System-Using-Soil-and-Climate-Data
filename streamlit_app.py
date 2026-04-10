@@ -5,33 +5,212 @@ import joblib
 import requests
 from datetime import datetime
 
-# Set page config
+# Set page config - Mobile-first responsive design
 st.set_page_config(
-    page_title="Crop Recommendation System",
+    page_title="🌾 Crop Advisor",
     page_icon="🌾",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="centered",
+    initial_sidebar_state="collapsed",
+    menu_items=None
 )
 
-# Custom CSS
+# Mobile-Friendly Custom CSS
 st.markdown("""
     <style>
-    .stMetric {
-        background-color: #f0f2f6;
-        padding: 10px;
-        border-radius: 5px;
+    /* Mobile Responsive Design */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    .header {
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    /* Main container */
+    .main {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    
+    /* Header styling */
+    .mobile-header {
+        background: linear-gradient(135deg, #2e7d32 0%, #558b2f 100%);
+        color: white;
+        padding: 20px 15px;
+        border-radius: 12px;
+        margin-bottom: 15px;
         text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .mobile-header h1 {
+        font-size: 28px;
+        margin: 10px 0 5px 0;
+    }
+    
+    .mobile-header p {
+        font-size: 13px;
+        opacity: 0.9;
+    }
+    
+    /* Card styling for better mobile readability */
+    .metric-card {
+        background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+        padding: 12px;
+        border-radius: 10px;
+        margin: 8px 0;
+        border-left: 4px solid #2e7d32;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .metric-card-label {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .metric-card-value {
+        font-size: 22px;
+        font-weight: bold;
         color: #2e7d32;
+    }
+    
+    /* Input styling */
+    .stNumberInput, .stSlider, .stTextInput {
+        margin-bottom: 10px !important;
+    }
+    
+    .stNumberInput label, .stSlider label, .stTextInput label {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        color: #333 !important;
+    }
+    
+    /* Button styling - Touch-friendly */
+    .stButton > button {
+        width: 100%;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        border: none !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        transition: all 0.3s ease;
+        min-height: 50px;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    /* Success/Error messages */
+    .stSuccess, .stInfo, .stWarning, .stError {
+        font-size: 14px;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        margin: 10px 0 !important;
+    }
+    
+    /* Recommendation box */
+    .recommendation-box {
+        background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+        color: #1b5e20;
+        padding: 16px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 15px 0;
+        border: 2px solid #2e7d32;
+        box-shadow: 0 4px 8px rgba(46, 125, 50, 0.2);
+    }
+    
+    .recommendation-crop {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .recommendation-confidence {
+        font-size: 16px;
+        opacity: 0.9;
+    }
+    
+    /* Quick info boxes */
+    .info-box {
+        background: #f1f8e9;
+        border-left: 4px solid #558b2f;
+        padding: 10px 12px;
+        border-radius: 6px;
+        margin: 8px 0;
+        font-size: 13px;
+    }
+    
+    /* Section divider */
+    .section-divider {
+        border: none;
+        border-top: 2px solid #b7e1b7;
+        margin: 15px 0;
+    }
+    
+    /* Tabs styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        padding: 8px 16px !important;
+        min-height: 45px !important;
+    }
+    
+    /* Expander styling */
+    .streamlit-expanderHeader {
+        background: #f5f5f5;
+        border-radius: 8px;
+        padding: 10px !important;
+    }
+    
+    /* Footer styling */
+    .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 12px;
+        color: #999;
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    /* Responsive text */
+    @media (max-width: 480px) {
+        .mobile-header h1 {
+            font-size: 24px;
+        }
+        
+        .recommendation-crop {
+            font-size: 22px;
+        }
+        
+        .stButton > button {
+            font-size: 15px !important;
+            padding: 12px 16px !important;
+            min-height: 48px !important;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
 
-# Title and description
-st.markdown("<h1 class='header'>🌾 Crop Recommendation System</h1>", unsafe_allow_html=True)
-st.markdown("---")
-st.write("Get personalized crop recommendations based on soil and climate data.")
+# Mobile Header
+st.markdown("""
+    <div class="mobile-header">
+        <h1>🌾 Crop Advisor</h1>
+        <p>Real-time crop recommendations for farmers</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Load models
 @st.cache_resource
@@ -50,135 +229,200 @@ model, scaler, label_encoder = load_models()
 if model is None:
     st.stop()
 
-# Sidebar for input method selection
-st.sidebar.header("Input Method")
-input_method = st.sidebar.radio("Choose input method:", 
-                                ["Manual Input", "Weather API", "Upload CSV"])
+# Create mobile-friendly tabs
+tab1, tab2, tab3 = st.tabs(["⚡ Quick Input", "🌍 Weather", "📤 Bulk"])
 
 # ========================
-# MANUAL INPUT TAB
+# TAB 1: QUICK INPUT
 # ========================
-if input_method == "Manual Input":
-    st.sidebar.header("📊 Soil & Climate Parameters")
+with tab1:
+    st.subheader("📝 Enter Soil & Climate Data")
     
+    # Quick preset buttons for common crops
+    st.write("**Quick Presets:**")
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("🌾 Rice", use_container_width=True, key="preset_rice"):
+            st.session_state.preset = 'rice'
+    with col2:
+        if st.button("🌽 Maize", use_container_width=True, key="preset_maize"):
+            st.session_state.preset = 'maize'
+    with col3:
+        if st.button("🥔 Potato", use_container_width=True, key="preset_potato"):
+            st.session_state.preset = 'potato'
+    
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    
+    # Input fields with better mobile spacing
+    st.write("**Soil Nutrients (mg/kg):**")
     col1, col2 = st.columns(2)
     
     with col1:
         nitrogen = st.number_input(
-            "Nitrogen (N) (mg/kg)", 
+            "Nitrogen (N)", 
             min_value=0.0, 
             max_value=200.0, 
             value=50.0,
-            help="Amount of nitrogen in soil"
+            step=5.0,
+            key="manual_n"
         )
+    with col2:
         phosphorus = st.number_input(
-            "Phosphorus (P) (mg/kg)", 
+            "Phosphorus (P)", 
             min_value=0.0, 
             max_value=150.0, 
             value=50.0,
-            help="Amount of phosphorus in soil"
+            step=5.0,
+            key="manual_p"
         )
-        potassium = st.number_input(
-            "Potassium (K) (mg/kg)", 
-            min_value=0.0, 
-            max_value=200.0, 
-            value=50.0,
-            help="Amount of potassium in soil"
-        )
+    
+    potassium = st.number_input(
+        "Potassium (K)", 
+        min_value=0.0, 
+        max_value=200.0, 
+        value=50.0,
+        step=5.0,
+        key="manual_k"
+    )
+    
+    st.write("**Climate Conditions:**")
+    col1, col2 = st.columns(2)
+    
+    with col1:
         temperature = st.slider(
             "Temperature (°C)", 
             min_value=0.0, 
             max_value=50.0, 
             value=25.0,
-            step=0.1
+            step=0.5,
+            key="manual_temp"
         )
-    
     with col2:
         humidity = st.slider(
             "Humidity (%)", 
             min_value=0.0, 
             max_value=100.0, 
             value=60.0,
-            step=1.0
+            step=5.0,
+            key="manual_hum"
         )
+    
+    col1, col2 = st.columns(2)
+    with col1:
         ph_value = st.slider(
             "Soil pH", 
             min_value=4.0, 
             max_value=9.0, 
             value=6.5,
-            step=0.1
+            step=0.1,
+            key="manual_ph"
         )
+    with col2:
         rainfall = st.number_input(
             "Rainfall (mm)", 
             min_value=0.0, 
             max_value=500.0, 
             value=100.0,
-            help="Expected annual rainfall"
+            step=10.0,
+            key="manual_rain"
         )
     
-    # Create input dataframe
-    input_data = {
-        'N': nitrogen,
-        'P': phosphorus,
-        'K': potassium,
-        'temperature': temperature,
-        'humidity': humidity,
-        'ph': ph_value,
-        'rainfall': rainfall
-    }
-    
-    # Predict
-    if st.button("🔍 Get Recommendation", key="manual_predict"):
-        with st.spinner("Analyzing soil and climate data..."):
+    # Predict button
+    if st.button("🔍 Get Crop Recommendation", key="manual_predict", use_container_width=True):
+        with st.spinner("Analyzing your farm data..."):
             try:
+                input_data = {
+                    'N': nitrogen,
+                    'P': phosphorus,
+                    'K': potassium,
+                    'temperature': temperature,
+                    'humidity': humidity,
+                    'ph': ph_value,
+                    'rainfall': rainfall
+                }
+                
                 input_df = pd.DataFrame([input_data])
                 input_scaled = scaler.transform(input_df)
                 prediction = model.predict(input_scaled)
                 crop_name = label_encoder.inverse_transform(prediction)[0]
                 confidence = model.predict_proba(input_scaled).max() * 100
                 
-                st.success(f"✅ Recommended Crop: **{crop_name}**")
-                st.metric("Confidence", f"{confidence:.2f}%")
+                # Display recommendation in a prominent box
+                st.markdown(f"""
+                    <div class="recommendation-box">
+                        <div style="font-size: 18px;">Best Crop for Your Farm</div>
+                        <div class="recommendation-crop">{crop_name.upper()}</div>
+                        <div class="recommendation-confidence">Confidence: {confidence:.1f}%</div>
+                    </div>
+                    """, unsafe_allow_html=True)
                 
                 # Display input summary
-                st.subheader("📋 Input Summary")
-                col1, col2, col3 = st.columns(3)
+                st.markdown("**📊 Your Farm Data:**")
+                col1, col2 = st.columns(2)
                 with col1:
-                    st.metric("Nitrogen", f"{nitrogen} mg/kg")
-                    st.metric("Temperature", f"{temperature}°C")
+                    st.markdown(f"""
+                        <div class="metric-card">
+                            <div class="metric-card-label">Nitrogen</div>
+                            <div class="metric-card-value">{nitrogen}</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-card-label">Temperature</div>
+                            <div class="metric-card-value">{temperature}°C</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-card-label">pH Value</div>
+                            <div class="metric-card-value">{ph_value}</div>
+                        </div>
+                        """, unsafe_allow_html=True)
                 with col2:
-                    st.metric("Phosphorus", f"{phosphorus} mg/kg")
-                    st.metric("Humidity", f"{humidity}%")
-                with col3:
-                    st.metric("Potassium", f"{potassium} mg/kg")
-                    st.metric("pH", f"{ph_value}")
-                    
+                    st.markdown(f"""
+                        <div class="metric-card">
+                            <div class="metric-card-label">Phosphorus</div>
+                            <div class="metric-card-value">{phosphorus}</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-card-label">Humidity</div>
+                            <div class="metric-card-value">{humidity}%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-card-label">Rainfall</div>
+                            <div class="metric-card-value">{rainfall}mm</div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
             except Exception as e:
                 st.error(f"❌ Error: {str(e)}")
 
 # ========================
-# WEATHER API TAB
+# TAB 2: WEATHER-BASED
 # ========================
-elif input_method == "Weather API":
+with tab2:
     st.subheader("🌐 Weather-Based Recommendation")
     
     col1, col2 = st.columns(2)
     
     with col1:
-        city = st.text_input("Enter City Name", value="Thiruvananthapuram", 
-                            help="Get weather data from OpenWeatherMap API")
-        api_key = st.text_input("API Key (from openweathermap.org)", 
-                               type="password",
-                               value="6ba29dc3cec671f8c2fd41b3aeb630a4")
+        city = st.text_input("City Name", value="Thiruvananthapuram", key="city")
     
     with col2:
-        nitrogen = st.number_input("Nitrogen (N) (mg/kg)", min_value=0.0, value=90.0, key="api_n")
-        phosphorus = st.number_input("Phosphorus (P) (mg/kg)", min_value=0.0, value=42.0, key="api_p")
-        potassium = st.number_input("Potassium (K) (mg/kg)", min_value=0.0, value=43.0, key="api_k")
-        ph_value = st.number_input("Soil pH", min_value=4.0, max_value=9.0, value=6.5, key="api_ph")
+        api_key = st.text_input("API Key", type="password", value="6ba29dc3cec671f8c2fd41b3aeb630a4", key="api_key")
     
-    if st.button("🌍 Fetch Weather & Predict", key="api_predict"):
-        with st.spinner(f"Fetching weather data for {city}..."):
+    st.write("**Soil Nutrients:**")
+    col1, col2 = st.columns(2)
+    with col1:
+        nitrogen_api = st.number_input("Nitrogen", min_value=0.0, value=90.0, step=5.0, key="api_n")
+    with col2:
+        phosphorus_api = st.number_input("Phosphorus", min_value=0.0, value=42.0, step=5.0, key="api_p")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        potassium_api = st.number_input("Potassium", min_value=0.0, value=43.0, step=5.0, key="api_k")
+    with col2:
+        ph_api = st.number_input("Soil pH", min_value=4.0, max_value=9.0, value=6.5, key="api_ph")
+    
+    if st.button("🌍 Get Weather & Recommend", key="api_predict", use_container_width=True):
+        with st.spinner(f"Fetching weather for {city}..."):
             try:
                 url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
                 response = requests.get(url, timeout=5)
@@ -189,25 +433,34 @@ elif input_method == "Weather API":
                     humidity = data['main']['humidity']
                     rainfall = data.get('rain', {}).get('1h', 0)
                     
-                    st.success(f"✅ Weather Data Retrieved for {city}")
+                    st.success(f"✅ Weather data loaded for **{city}**")
                     
                     # Display weather
-                    col1, col2, col3 = st.columns(3)
-                    with col1:
-                        st.metric("🌡️ Temperature", f"{temperature}°C")
-                    with col2:
-                        st.metric("💧 Humidity", f"{humidity}%")
-                    with col3:
-                        st.metric("🌧️ Rainfall", f"{rainfall} mm")
+                    st.markdown(f"""
+                        <div class="metric-card">
+                            <div class="metric-card-label">🌡️ Temperature</div>
+                            <div class="metric-card-value">{temperature}°C</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-card-label">💧 Humidity</div>
+                            <div class="metric-card-value">{humidity}%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-card-label">🌧️ Rainfall</div>
+                            <div class="metric-card-value">{rainfall} mm</div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    
+                    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
                     
                     # Make prediction
                     input_data = {
-                        'N': nitrogen,
-                        'P': phosphorus,
-                        'K': potassium,
+                        'N': nitrogen_api,
+                        'P': phosphorus_api,
+                        'K': potassium_api,
                         'temperature': temperature,
                         'humidity': humidity,
-                        'ph': ph_value,
+                        'ph': ph_api,
                         'rainfall': rainfall
                     }
                     
@@ -217,58 +470,65 @@ elif input_method == "Weather API":
                     crop_name = label_encoder.inverse_transform(prediction)[0]
                     confidence = model.predict_proba(input_scaled).max() * 100
                     
-                    st.success(f"✅ Recommended Crop: **{crop_name}**")
-                    st.metric("Confidence", f"{confidence:.2f}%")
+                    st.markdown(f"""
+                        <div class="recommendation-box">
+                            <div>Based on {city}'s Weather</div>
+                            <div class="recommendation-crop">{crop_name.upper()}</div>
+                            <div class="recommendation-confidence">Confidence: {confidence:.1f}%</div>
+                        </div>
+                        """, unsafe_allow_html=True)
                     
                 else:
-                    st.error(f"❌ Error: Could not fetch weather data. Check city name and API key.")
+                    st.error(f"❌ Could not find city: {city}. Check the spelling and try again.")
                     
             except Exception as e:
                 st.error(f"❌ Error: {str(e)}")
 
 # ========================
-# BULK PREDICTION TAB
+# TAB 3: BULK UPLOAD
 # ========================
-elif input_method == "Upload CSV":
-    st.subheader("📤 Bulk Predictions from CSV")
+with tab3:
+    st.subheader("📤 Bulk Predictions")
     st.write("Upload a CSV file with columns: N, P, K, temperature, humidity, ph, rainfall")
     
-    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+    uploaded_file = st.file_uploader("Choose CSV file", type="csv", key="csv_file")
     
     if uploaded_file is not None:
         try:
             df = pd.read_csv(uploaded_file)
-            st.write(f"✅ Loaded {len(df)} records")
-            st.dataframe(df.head())
+            st.success(f"✅ Loaded {len(df)} records")
             
-            if st.button("🔍 Predict All Crops", key="csv_predict"):
+            with st.expander("👁️ Preview Data", expanded=False):
+                st.dataframe(df.head())
+            
+            if st.button("🔍 Predict All", key="csv_predict", use_container_width=True):
                 with st.spinner("Making predictions..."):
-                    # Check required columns
                     required_cols = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
                     if all(col in df.columns for col in required_cols):
                         
-                        # Scale and predict
                         input_scaled = scaler.transform(df[required_cols])
                         predictions = model.predict(input_scaled)
                         confidences = model.predict_proba(input_scaled).max(axis=1) * 100
                         
-                        # Add results
                         df['Predicted_Crop'] = label_encoder.inverse_transform(predictions)
                         df['Confidence_%'] = confidences.round(2)
                         
                         st.success("✅ Predictions Complete!")
-                        st.dataframe(df[required_cols + ['Predicted_Crop', 'Confidence_%']])
                         
-                        # Download results
+                        with st.expander("📊 View Results", expanded=True):
+                            st.dataframe(df[['N', 'P', 'K', 'temperature', 'humidity', 'Predicted_Crop', 'Confidence_%']])
+                        
+                        # Download button
                         csv = df.to_csv(index=False)
                         st.download_button(
                             label="📥 Download Results",
                             data=csv,
                             file_name="crop_predictions.csv",
-                            mime="text/csv"
+                            mime="text/csv",
+                            use_container_width=True
                         )
                     else:
-                        st.error(f"❌ CSV must contain columns: {', '.join(required_cols)}")
+                        st.error(f"❌ Missing required columns: {', '.join(required_cols)}")
                         
         except Exception as e:
             st.error(f"❌ Error: {str(e)}")
@@ -276,22 +536,10 @@ elif input_method == "Upload CSV":
 # ========================
 # FOOTER
 # ========================
-st.markdown("---")
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.info("📚 **Model**: Random Forest Classifier")
-
-with col2:
-    st.info("📊 **Features**: 7 (N, P, K, Temp, Humidity, pH, Rainfall)")
-
-with col3:
-    st.info(f"⏰ **Last Updated**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-
 st.markdown("""
----
-<div style="text-align: center;">
-    <p>🌾 <strong>Crop Recommendation System</strong> | Made with Streamlit 🚀</p>
-    <p style="font-size: 12px; color: gray;">For agricultural predictions only. Always consult local experts.</p>
-</div>
-""", unsafe_allow_html=True)
+    <div class="footer">
+        <p><strong>🌾 Crop Advisor</strong> | AI-Powered Recommendations</p>
+        <p>🤖 Model: Random Forest | 📊 Features: 7 | ⏰ Updated: Daily</p>
+        <p style="font-size: 11px; margin-top: 8px;">⚠️ For guidance only. Always consult local agricultural experts.</p>
+    </div>
+    """, unsafe_allow_html=True)
