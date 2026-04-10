@@ -4,6 +4,12 @@ import numpy as np
 import joblib
 import requests
 from datetime import datetime
+from region_optimizer import (
+    get_region_data, get_regional_crop_scores, 
+    get_regional_optimal_conditions, get_regional_tips,
+    get_seasonal_crops, get_crop_info, 
+    adjust_recommendation_for_region, REGION_LIST
+)
 
 # Set page config - Mobile-first responsive design
 st.set_page_config(
@@ -208,9 +214,40 @@ st.markdown("""
 st.markdown("""
     <div class="mobile-header">
         <h1>🌾 Crop Advisor</h1>
-        <p>Real-time crop recommendations for farmers</p>
+        <p>Region-optimized crop recommendations for farmers</p>
     </div>
     """, unsafe_allow_html=True)
+
+# Initialize session state for region
+if "selected_region" not in st.session_state:
+    st.session_state.selected_region = REGION_LIST[0]
+
+# Region selector in expander (compact design)
+with st.expander("📍 **Select Your Region**", expanded=True):
+    st.session_state.selected_region = st.selectbox(
+        "Choose your farming region:",
+        REGION_LIST,
+        index=REGION_LIST.index(st.session_state.selected_region),
+        key="region_select"
+    )
+    
+    # Display region info
+    region_data = get_region_data(st.session_state.selected_region)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">Climate</div>
+                <div class="metric-card-value" style="font-size: 16px;">{region_data.get('climate', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">Rainfall</div>
+                <div class="metric-card-value" style="font-size: 16px;">{region_data.get('rainfall', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
 # Load models
 @st.cache_resource
@@ -229,8 +266,8 @@ model, scaler, label_encoder = load_models()
 if model is None:
     st.stop()
 
-# Create mobile-friendly tabs
-tab1, tab2, tab3 = st.tabs(["⚡ Quick Input", "🌍 Weather", "📤 Bulk"])
+# Create 4-tab mobile-friendly structure
+tab1, tab2, tab3, tab4 = st.tabs(["⚡ Quick Input", "🌍 Weather", "📤 Bulk", "📍 Region Info"])
 
 # ========================
 # TAB 1: QUICK INPUT
@@ -346,21 +383,43 @@ with tab1:
                 input_scaled = scaler.transform(input_df)
                 prediction = model.predict(input_scaled)
                 crop_name = label_encoder.inverse_transform(prediction)[0]
-                confidence = model.predict_proba(input_scaled).max() * 100
+                base_confidence = model.predict_proba(input_scaled).max() * 100
+                
+                # Apply regional optimization
+                adjusted_confidence, region_factor, region_tips = adjust_recommendation_for_region(
+                    base_confidence / 100,
+                    crop_name,
+                    st.session_state.selected_region,
+                    input_data
+                )
+                adjusted_confidence = adjusted_confidence * 100
+                
+                # Determine recommendation strength based on region adjustment
+                if region_factor > 0.85:
+                    recommendation_text = "✅ Highly Recommended for your region"
+                elif region_factor > 0.70:
+                    recommendation_text = "✓ Good choice for your region"
+                else:
+                    recommendation_text = "⚠️ Suitable but monitor closely"
                 
                 # Display recommendation in a prominent box
                 st.markdown(f"""
                     <div class="recommendation-box">
-                        <div style="font-size: 18px;">Best Crop for Your Farm</div>
+                        <div style="font-size: 16px;">🌍 Region-Optimized Recommendation</div>
                         <div class="recommendation-crop">{crop_name.upper()}</div>
-                        <div class="recommendation-confidence">Confidence: {confidence:.1f}%</div>
+                        <div style="font-size: 14px; margin: 8px 0 4px 0;">{recommendation_text}</div>
+                        <div class="recommendation-confidence">Overall Confidence: {adjusted_confidence:.1f}%</div>
+                        <div style="font-size: 11px; opacity: 0.8;">Base: {base_confidence:.0f}% | Regional Factor: {region_factor*100:.0f}%</div>
                     </div>
                     """, unsafe_allow_html=True)
                 
-                # Display input summary
-                st.markdown("**📊 Your Farm Data:**")
+                # Display input summary with regional comparison
+                st.markdown("**📊 Your Farm Data vs Regional Optimal:**")
+                optimal_conditions = get_regional_optimal_conditions(st.session_state.selected_region)
+                
                 col1, col2 = st.columns(2)
                 with col1:
+                    st.markdown("""<div style="font-size: 12px; color: #666; margin-bottom: 8px; text-align: center; text-transform: uppercase;">Your Input</div>""", unsafe_allow_html=True)
                     st.markdown(f"""
                         <div class="metric-card">
                             <div class="metric-card-label">Nitrogen</div>
@@ -376,20 +435,27 @@ with tab1:
                         </div>
                         """, unsafe_allow_html=True)
                 with col2:
+                    st.markdown("""<div style="font-size: 12px; color: #666; margin-bottom: 8px; text-align: center; text-transform: uppercase;">Regional Target</div>""", unsafe_allow_html=True)
                     st.markdown(f"""
                         <div class="metric-card">
-                            <div class="metric-card-label">Phosphorus</div>
-                            <div class="metric-card-value">{phosphorus}</div>
+                            <div class="metric-card-label">Nitrogen</div>
+                            <div class="metric-card-value">{optimal_conditions['nitrogen']}</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-card-label">Humidity</div>
-                            <div class="metric-card-value">{humidity}%</div>
+                            <div class="metric-card-label">Temperature</div>
+                            <div class="metric-card-value">{region_data.get('avg_temperature', 'N/A')}</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-card-label">Rainfall</div>
-                            <div class="metric-card-value">{rainfall}mm</div>
+                            <div class="metric-card-label">pH Value</div>
+                            <div class="metric-card-value">{optimal_conditions['ph']}</div>
                         </div>
                         """, unsafe_allow_html=True)
+                
+                # Show regional tips
+                if region_tips:
+                    st.markdown("**💡 Regional Farming Tips:**")
+                    for tip in region_tips:
+                        st.markdown(f"- {tip}")
                         
             except Exception as e:
                 st.error(f"❌ Error: {str(e)}")
@@ -468,13 +534,30 @@ with tab2:
                     input_scaled = scaler.transform(input_df)
                     prediction = model.predict(input_scaled)
                     crop_name = label_encoder.inverse_transform(prediction)[0]
-                    confidence = model.predict_proba(input_scaled).max() * 100
+                    base_confidence = model.predict_proba(input_scaled).max() * 100
+                    
+                    # Apply regional optimization
+                    adjusted_confidence, region_factor, region_tips = adjust_recommendation_for_region(
+                        base_confidence / 100,
+                        crop_name,
+                        st.session_state.selected_region,
+                        input_data
+                    )
+                    adjusted_confidence = adjusted_confidence * 100
+                    
+                    if region_factor > 0.85:
+                        recommendation_text = "✅ Highly Recommended for your region"
+                    elif region_factor > 0.70:
+                        recommendation_text = "✓ Good choice for your region"
+                    else:
+                        recommendation_text = "⚠️ Suitable but monitor closely"
                     
                     st.markdown(f"""
                         <div class="recommendation-box">
-                            <div>Based on {city}'s Weather</div>
+                            <div>🌍 {city}'s Weather + Region</div>
                             <div class="recommendation-crop">{crop_name.upper()}</div>
-                            <div class="recommendation-confidence">Confidence: {confidence:.1f}%</div>
+                            <div style="font-size: 14px; margin: 8px 0 4px 0;">{recommendation_text}</div>
+                            <div class="recommendation-confidence">Confidence: {adjusted_confidence:.1f}%</div>
                         </div>
                         """, unsafe_allow_html=True)
                     
@@ -502,31 +585,64 @@ with tab3:
                 st.dataframe(df.head())
             
             if st.button("🔍 Predict All", key="csv_predict", use_container_width=True):
-                with st.spinner("Making predictions..."):
+                with st.spinner("Making predictions with regional optimization..."):
                     required_cols = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
                     if all(col in df.columns for col in required_cols):
                         
                         input_scaled = scaler.transform(df[required_cols])
                         predictions = model.predict(input_scaled)
-                        confidences = model.predict_proba(input_scaled).max(axis=1) * 100
+                        base_confidences = model.predict_proba(input_scaled).max(axis=1) * 100
                         
                         df['Predicted_Crop'] = label_encoder.inverse_transform(predictions)
-                        df['Confidence_%'] = confidences.round(2)
+                        df['Base_Confidence_%'] = base_confidences.round(2)
                         
-                        st.success("✅ Predictions Complete!")
+                        # Apply regional optimization for each row
+                        adjusted_confidences = []
+                        region_factors = []
+                        
+                        for idx, row in df.iterrows():
+                            input_data = row[required_cols].to_dict()
+                            crop = df.loc[idx, 'Predicted_Crop']
+                            
+                            adj_conf, region_factor, _ = adjust_recommendation_for_region(
+                                base_confidences[idx] / 100,
+                                crop,
+                                st.session_state.selected_region,
+                                input_data
+                            )
+                            adjusted_confidences.append(adj_conf * 100)
+                            region_factors.append(region_factor)
+                        
+                        df['Regional_Confidence_%'] = pd.Series(adjusted_confidences).round(2)
+                        df['Region_Factor'] = pd.Series(region_factors).round(2)
+                        
+                        st.success(f"✅ Predictions Complete! ({len(df)} records processed)")
                         
                         with st.expander("📊 View Results", expanded=True):
-                            st.dataframe(df[['N', 'P', 'K', 'temperature', 'humidity', 'Predicted_Crop', 'Confidence_%']])
+                            st.dataframe(df[['Predicted_Crop', 'Base_Confidence_%', 'Regional_Confidence_%', 'Region_Factor']])
                         
                         # Download button
                         csv = df.to_csv(index=False)
                         st.download_button(
-                            label="📥 Download Results",
+                            label="📥 Download Results (with regional optimization)",
                             data=csv,
-                            file_name="crop_predictions.csv",
+                            file_name="crop_predictions_regional.csv",
                             mime="text/csv",
                             use_container_width=True
                         )
+                        
+                        # Show summary stats
+                        st.markdown("**📈 Regional Optimization Summary:**")
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            avg_base = df['Base_Confidence_%'].mean()
+                            st.metric("Avg Base Confidence", f"{avg_base:.1f}%")
+                        with col2:
+                            avg_regional = df['Regional_Confidence_%'].mean()
+                            st.metric("Avg Regional Confidence", f"{avg_regional:.1f}%")
+                        with col3:
+                            avg_factor = df['Region_Factor'].mean()
+                            st.metric("Avg Region Factor", f"{avg_factor:.2f}")
                     else:
                         st.error(f"❌ Missing required columns: {', '.join(required_cols)}")
                         
@@ -534,12 +650,145 @@ with tab3:
             st.error(f"❌ Error: {str(e)}")
 
 # ========================
+# TAB 4: REGION INFORMATION
+# ========================
+with tab4:
+    st.subheader("📍 Region-Specific Information")
+    
+    region_data = get_region_data(st.session_state.selected_region)
+    
+    # Region overview
+    st.markdown(f"### {st.session_state.selected_region}")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">Climate</div>
+                <div style="font-size: 16px; font-weight: bold; color: #2e7d32;">{region_data.get('climate', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">Rainfall</div>
+                <div style="font-size: 14px; font-weight: bold; color: #2e7d32;">{region_data.get('rainfall', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    with col3:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">Temperature</div>
+                <div style="font-size: 14px; font-weight: bold; color: #2e7d32;">{region_data.get('avg_temperature', 'N/A')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    
+    # Suitable crops
+    st.markdown("**🌾 Crops Suitable for This Region:**")
+    crop_scores = get_regional_crop_scores(st.session_state.selected_region)
+    if crop_scores:
+        # Sort by suitability score
+        sorted_crops = sorted(crop_scores.items(), key=lambda x: x[1], reverse=True)
+        
+        cols = st.columns(2)
+        for idx, (crop, score) in enumerate(sorted_crops):
+            with cols[idx % 2]:
+                crop_info = get_crop_info(crop)
+                crop_icon = crop_info.get('icon', '🌾')
+                
+                # Color code based on suitability
+                if score >= 85:
+                    color = "#4caf50"  # Green
+                    rating = "⭐⭐⭐"
+                elif score >= 70:
+                    color = "#ffc107"  # Amber
+                    rating = "⭐⭐"
+                else:
+                    color = "#ff9800"  # Orange
+                    rating = "⭐"
+                
+                st.markdown(f"""
+                    <div class="metric-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="metric-card-label">{crop_icon} {crop}</div>
+                                <div style="color: {color}; font-weight: bold; font-size: 14px;">{rating}</div>
+                            </div>
+                            <div style="font-size: 20px; color: {color};">{score}%</div>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+    
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    
+    # Seasonal crops
+    st.markdown("**📅 Seasonal Crops:**")
+    seasonal_data = get_seasonal_crops(st.session_state.selected_region)
+    if seasonal_data:
+        for season, crops in seasonal_data.items():
+            st.markdown(f"**{season}:**")
+            st.markdown(", ".join([f"{crop}" for crop in crops]))
+    
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    
+    # Optimal soil conditions
+    st.markdown("**🌱 Optimal Soil Conditions:**")
+    optimal = get_regional_optimal_conditions(st.session_state.selected_region)
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">N (mg/kg)</div>
+                <div class="metric-card-value" style="font-size: 18px;">{optimal['nitrogen']}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">P (mg/kg)</div>
+                <div class="metric-card-value" style="font-size: 18px;">{optimal['phosphorus']}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    with col3:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">K (mg/kg)</div>
+                <div class="metric-card-value" style="font-size: 18px;">{optimal['potassium']}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    with col4:
+        st.markdown(f"""
+            <div class="metric-card">
+                <div class="metric-card-label">pH</div>
+                <div class="metric-card-value" style="font-size: 18px;">{optimal['ph']}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    
+    # Farming tips
+    st.markdown("**💡 Regional Farming Tips:**")
+    tips = get_regional_tips(st.session_state.selected_region)
+    if tips:
+        for tip in tips:
+            st.markdown(f"- {tip}")
+    
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    
+    # States in region
+    if 'states' in region_data:
+        st.markdown("**📍 States in This Region:**")
+        st.markdown(", ".join(region_data['states']))
+
+# ========================
 # FOOTER
 # ========================
 st.markdown("""
     <div class="footer">
-        <p><strong>🌾 Crop Advisor</strong> | AI-Powered Recommendations</p>
-        <p>🤖 Model: Random Forest | 📊 Features: 7 | ⏰ Updated: Daily</p>
+        <p><strong>🌾 Crop Advisor</strong> | Region-Optimized AI Recommendations</p>
+        <p>🤖 Model: Random Forest | 📊 Features: 7 | 🌍 Regions: 6</p>
         <p style="font-size: 11px; margin-top: 8px;">⚠️ For guidance only. Always consult local agricultural experts.</p>
     </div>
     """, unsafe_allow_html=True)
