@@ -111,7 +111,7 @@ Scikit-learn
 
 * Use Deep Learning models for better accuracy
 * Integrate real-time weather API data
-* Deploy as a web application (Flask/Django)
+* Deploy as a web application (Streamlit)
 * Build a mobile-friendly interface for farmers
 * Add region-specific crop optimization
 
