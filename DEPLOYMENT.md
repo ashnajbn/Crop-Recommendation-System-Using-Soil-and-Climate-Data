@@ -56,6 +56,8 @@ The app will automatically open in your browser at `http://localhost:8501`
 4. Select `streamlit_app.py` as main file
 5. Deploy with one click!
 
+> Note: Add `runtime.txt` to pin Python to `python-3.12.4` so Streamlit Cloud uses a supported Python version.
+
 ```
 Pros: Free, automatic updates, easy sharing
 Cons: Limited resources
