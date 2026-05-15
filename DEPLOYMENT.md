@@ -28,7 +28,7 @@ The app will automatically open in your browser at `http://localhost:8501`
 
 ---
 
-## 🚀 Features
+##  Features
 
 ### **Manual Input Mode**
 - Input soil parameters (N, P, K)
@@ -47,7 +47,7 @@ The app will automatically open in your browser at `http://localhost:8501`
 
 ---
 
-## 📦 Deployment Options
+##  Deployment Options
 
 ### **Option 1: Streamlit Cloud (Easiest)**
 1. Push code to GitHub
@@ -132,7 +132,7 @@ ENCODER_PATH=./label_encoder.pkl
 
 ---
 
-## 📊 File Structure
+##  File Structure
 ```
 Crop-Recommendation-System/
 ├── streamlit_app.py          # Main web app
@@ -149,7 +149,7 @@ Crop-Recommendation-System/
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 Test the app locally first:
 ```bash
@@ -164,9 +164,9 @@ Then test all features:
 
 ---
 
-## 🔐 Security Notes
+##  Security Notes
 
-⚠️ **API Key Protection**:
+ **API Key Protection**:
 - Don't commit API keys to GitHub
 - Use environment variables or Streamlit secrets
 - Streamlit Cloud Secrets Manager:
@@ -174,14 +174,14 @@ Then test all features:
   2. Add under "Secrets"
   3. Access in app: `st.secrets["api_key"]`
 
-⚠️ **Model Protection**:
+ **Model Protection**:
 - Models are in `.pkl` format (pickle)
 - Keep them secure on deployed servers
 - Consider encryption for production
 
 ---
 
-## 📈 Performance Optimization
+##  Performance Optimization
 
 ### Caching (Already Implemented)
 ```python
@@ -198,7 +198,7 @@ def load_models():
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### **"Models not found" Error**
 ```bash
@@ -224,7 +224,7 @@ pip install streamlit==1.28.0
 
 ---
 
-## 📱 Mobile Access
+##  Mobile Access
 
 The Streamlit app is mobile-responsive! Access from:
 - Same network: `http://your_ip:8501`
@@ -232,7 +232,7 @@ The Streamlit app is mobile-responsive! Access from:
 
 ---
 
-## 📞 Support & Next Steps
+##  Support & Next Steps
 
 1. **Enhance UI**: Add charts, model explanations
 2. **Add Alerts**: Notify on extreme conditions
