@@ -41,7 +41,7 @@ Crop-Recommendation-System/
 
 ---
 
-## 📊 Dataset  
+##  Dataset  
 The dataset contains agricultural and environmental parameters used to recommend crops.
 
 Download it from:https://www.kaggle.com/code/sajjadalishah/crop-recommendation-system
@@ -87,7 +87,7 @@ cd Crop-Recommendation-System
 pip install -r requirements.txt
 ```
 
-### 3️🚀 Launch the Mobile-Friendly App
+### 3️ Launch the Mobile-Friendly App
 
 #### Option A: Local Development
 ```bash
@@ -114,7 +114,7 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 
 ---
 
-## 📱 Mobile App Features
+##  Mobile App Features
 
 ### Four Easy-to-Use Tabs:
 1. **⚡ Quick Input** - Manual data entry with region selection & regional confidence adjustment
@@ -135,10 +135,10 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 ✅ Optimal soil condition display  
 
 ### Documentation:
-- 📖 **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - User guide for farmers
-- 🔧 **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Technical specifications
-- 🌍 **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Region-specific recommendations guide
-- 📋 **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Complete technical overview
+-  **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - User guide for farmers
+-  **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Technical specifications
+-  **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Region-specific recommendations guide
+-  **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Complete technical overview
 
 ---
 ## Technologies Used
