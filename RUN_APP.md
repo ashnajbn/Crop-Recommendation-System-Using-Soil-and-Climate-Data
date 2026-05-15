@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Streamlit Web App
+#  Quick Start Guide - Streamlit Web App
 
 ## Step 1: Ensure Models are Trained
 
@@ -13,9 +13,9 @@ joblib.dump(le, 'label_encoder.pkl')
 ```
 
 Verify files exist in your project directory:
-- ✅ `model.pkl` (trained Random Forest)
-- ✅ `scaler.pkl` (feature scaler)
-- ✅ `label_encoder.pkl` (crop label encoder)
+-  `model.pkl` (trained Random Forest)
+-  `scaler.pkl` (feature scaler)
+-  `label_encoder.pkl` (crop label encoder)
 
 ---
 
