@@ -75,7 +75,7 @@ The app automatically opens in your default browser at:
 
 ---
 
-## 🎯 Using the App
+##  Using the App
 
 ### **Mode 1: Manual Input** 📝
 1. Adjust sliders for soil nutrients (N, P, K)
@@ -98,7 +98,7 @@ The app automatically opens in your default browser at:
 
 ---
 
-## 🔑 Getting OpenWeatherMap API Key
+##  Getting OpenWeatherMap API Key
 
 1. Go to [openweathermap.org](https://openweathermap.org/api)
 2. Sign up for free account
@@ -110,7 +110,7 @@ The app automatically opens in your default browser at:
 
 ---
 
-## 📊 Sample CSV Format
+##  Sample CSV Format
 
 Create `crops_data.csv`:
 ```csv
@@ -162,7 +162,7 @@ streamlit run streamlit_app.py --server.port=8502
 
 ---
 
-## 🌐 Deploy Online
+##  Deploy Online
 
 ### **Option 1: Streamlit Cloud (Recommended)**
 ```bash
