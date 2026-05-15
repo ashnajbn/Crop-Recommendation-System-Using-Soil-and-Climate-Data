@@ -479,19 +479,19 @@ Edit `region_optimizer.py` and add to `REGIONS` dictionary with required data fi
 
 ---
 
-## 📖 Documentation
+##  Documentation
 
-- 📘 **[README.md](README.md)** - Project overview & quick start
-- 📕 **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment instructions
-- 📗 **[RUN_APP.md](RUN_APP.md)** - Running the app locally
-- 📙 **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - Mobile app user guide (farmers)
-- 📔 **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Mobile technical specs (developers)
-- 📓 **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Regional recommendations guide
-- 📒 **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Technical summary
+-  **[README.md](README.md)** - Project overview & quick start
+-  **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment instructions
+-  **[RUN_APP.md](RUN_APP.md)** - Running the app locally
+-  **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - Mobile app user guide (farmers)
+-  **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Mobile technical specs (developers)
+-  **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Regional recommendations guide
+-  **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Technical summary
 
 ---
 
-## 💬 Support & Contact
+##  Support & Contact
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
@@ -500,7 +500,7 @@ For issues, questions, or suggestions:
 
 ---
 
-## 📄 License
+##  License
 
 This project is open source and available under the MIT License.
 
