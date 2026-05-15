@@ -1,4 +1,4 @@
-# 🌍 Region-Specific Crop Optimization - Project Summary
+#  Region-Specific Crop Optimization - Project Summary
 
 ## ✨ What Was Built
 
@@ -6,7 +6,7 @@ A comprehensive **region-specific crop recommendation system** that provides tai
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
 ### 1. **6 Distinct Geographic Regions**
 - ✅ North India (temperate, wheat-rice zone)
@@ -46,7 +46,7 @@ Actionable advice specific to each region:
 
 ---
 
-## 📊 Technical Implementation
+##  Technical Implementation
 
 ### New Files Created
 
@@ -77,7 +77,7 @@ Actionable advice specific to each region:
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ### Recommendation Pipeline
 ```
@@ -109,11 +109,11 @@ Where:
 
 ---
 
-## 🎨 User Interface Enhancements
+##  User Interface Enhancements
 
 ### Region Selector
 ```
-📍 Select Your Region (Expander)
+ Select Your Region (Expander)
 ├── Dropdown with 6 options
 ├── Climate display
 └── Rainfall display
@@ -125,13 +125,13 @@ Where:
 
 ### New Region Info Tab
 ```
-📍 Region Information
+ Region Information
 ├── Region overview (Climate, Rainfall, Temperature)
-├── 🌾 Suitable crops with color-coded ratings
-├── 📅 Seasonal crops (Rabi, Kharif, etc.)
-├── 🌱 Optimal soil conditions (N, P, K, pH)
-├── 💡 Regional farming tips
-└── 📍 States included in region
+├──  Suitable crops with color-coded ratings
+├──  Seasonal crops (Rabi, Kharif, etc.)
+├──  Optimal soil conditions (N, P, K, pH)
+├──  Regional farming tips
+└──  States included in region
 ```
 
 ### Weather Tab Enhancement
@@ -146,7 +146,7 @@ Where:
 
 ---
 
-## 📈 Data Structure
+##  Data Structure
 
 ### Region Database (REGIONS dict)
 ```python
@@ -205,7 +205,7 @@ Where:
 
 ---
 
-## 💾 Files Changed/Created
+##  Files Changed/Created
 
 ```
 ✅ NEW: region_optimizer.py (630 lines)
@@ -224,31 +224,31 @@ Where:
 
 ---
 
-## 🎯 Functional Capabilities
+##  Functional Capabilities
 
 ### By Tab
 
-**⚡ Quick Input Tab**
+** Quick Input Tab**
 - ✅ Select region
 - ✅ Get region-adjusted recommendations
 - ✅ See comparison with regional optimalals
 - ✅ View regional tips
 - ✅ Confidence adjustment: Base × Regional Factor
 
-**🌍 Weather Tab**
+** Weather Tab**
 - ✅ Select region
 - ✅ Get live weather + regional factors
 - ✅ Combined weather-region recommendation
 - ✅ Regional suitability indicator
 
-**📤 Bulk Tab**
+** Bulk Tab**
 - ✅ Upload CSV with farm data
 - ✅ Apply regional optimization to all rows
 - ✅ Compare base vs regional confidence
 - ✅ Export with regional adjustment factors
 - ✅ Summary statistics (avg base, avg regional, avg factor)
 
-**📍 Region Info Tab** (NEW)
+** Region Info Tab** (NEW)
 - ✅ View region overview
 - ✅ See suitable crops with ratings
 - ✅ Check seasonal crops
@@ -258,7 +258,7 @@ Where:
 
 ---
 
-## 📊 Data Coverage
+##  Data Coverage
 
 ### Regions: 6
 - North India
@@ -287,7 +287,7 @@ Where:
 
 ---
 
-## 🚀 Farmer Benefits
+##  Farmer Benefits
 
 ### 1. **Accuracy**
 - Region-specific crop suitability
@@ -316,7 +316,7 @@ Where:
 
 ---
 
-## 📈 Performance Metrics
+##  Performance Metrics
 
 ### Code Statistics
 - **New Python Code**: 630 lines (region_optimizer.py)
@@ -340,7 +340,7 @@ Where:
 
 ---
 
-## 🔧 Technical Features
+##  Technical Features
 
 ### Optimization Algorithm
 ✅ Crop suitability scoring (region-specific)  
@@ -364,7 +364,7 @@ Where:
 
 ---
 
-## 🎓 Educational Value
+##  Educational Value
 
 Farmers learn:
 - **Geography-based agriculture**: Different regions need different crops
@@ -404,7 +404,7 @@ Farmers learn:
 
 ---
 
-## 🚀 Deployment Status
+##  Deployment Status
 
 **Status**: ✅ **COMPLETE & DEPLOYED**
 
@@ -416,7 +416,7 @@ Farmers learn:
 
 ---
 
-## 📱 Usage Example
+##  Usage Example
 
 ```
 Farmer in Punjab (North India):
@@ -435,7 +435,7 @@ Farmer in Punjab (North India):
 
 ---
 
-## 🌍 Future Enhancements
+##  Future Enhancements
 
 Potential additions:
 - Sub-district level optimization
