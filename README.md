@@ -117,10 +117,10 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 ##  Mobile App Features
 
 ### Four Easy-to-Use Tabs:
-1. **⚡ Quick Input** - Manual data entry with region selection & regional confidence adjustment
-2. **🌍 Weather** - Location-based recommendations with regional optimization
-3. **📤 Bulk** - Upload and process multiple farms with batch regional adjustment
-4. **📍 Region Info** - View region-specific crop data, seasonal crops, and soil conditions
+1. ** Quick Input** - Manual data entry with region selection & regional confidence adjustment
+2. ** Weather** - Location-based recommendations with regional optimization
+3. ** Bulk** - Upload and process multiple farms with batch regional adjustment
+4. ** Region Info** - View region-specific crop data, seasonal crops, and soil conditions
 
 ### Mobile-Optimized Features:
 ✅ Responsive design for all screen sizes (mobile-first, 500px max-width)  
