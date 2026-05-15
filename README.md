@@ -12,20 +12,20 @@ This system helps farmers and agricultural planners make **data-driven decisions
 ---
 
 ## Features  
-- 🎯 Machine Learning-based crop recommendations
-- 📱 **Mobile-optimized responsive interface** for smartphones & tablets
-- 🌍 **Region-specific crop optimization** (6 regions with customized recommendations)
-- 🌍 Real-time weather API integration (OpenWeatherMap)
-- 📊 Interactive data visualization and analytics
-- 📤 Bulk prediction capability (CSV upload with regional adjustment)
-- 💾 Model caching for fast predictions
-- 🔒 Secure, offline-capable predictions
-- 📈 Comprehensive accuracy metrics
-- 🌾 Farmer-friendly UI with intuitive controls
-- 🎡 Tab-based navigation for easy mobile access
-- 🌱 Seasonal crop recommendations by region
-- 📍 Regional soil condition guidance (N, P, K, pH optimization)
-- 💡 Region-specific farming tips and best practices  
+-  Machine Learning-based crop recommendations
+-  **Mobile-optimized responsive interface** for smartphones & tablets
+-  **Region-specific crop optimization** (6 regions with customized recommendations)
+-  Real-time weather API integration (OpenWeatherMap)
+-  Interactive data visualization and analytics
+-  Bulk prediction capability (CSV upload with regional adjustment)
+-  Model caching for fast predictions
+-  Secure, offline-capable predictions
+-  Comprehensive accuracy metrics
+-  Farmer-friendly UI with intuitive controls
+-  Tab-based navigation for easy mobile access
+-  Seasonal crop recommendations by region
+-  Regional soil condition guidance (N, P, K, pH optimization)
+-  Region-specific farming tips and best practices  
 
 ---
 
@@ -41,7 +41,7 @@ Crop-Recommendation-System/
 
 ---
 
-## 📊 Dataset  
+##  Dataset  
 The dataset contains agricultural and environmental parameters used to recommend crops.
 
 Download it from:https://www.kaggle.com/code/sajjadalishah/crop-recommendation-system
@@ -87,7 +87,7 @@ cd Crop-Recommendation-System
 pip install -r requirements.txt
 ```
 
-### 3️🚀 Launch the Mobile-Friendly App
+### 3️ Launch the Mobile-Friendly App
 
 #### Option A: Local Development
 ```bash
@@ -114,13 +114,13 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 
 ---
 
-## 📱 Mobile App Features
+##  Mobile App Features
 
 ### Four Easy-to-Use Tabs:
-1. **⚡ Quick Input** - Manual data entry with region selection & regional confidence adjustment
-2. **🌍 Weather** - Location-based recommendations with regional optimization
-3. **📤 Bulk** - Upload and process multiple farms with batch regional adjustment
-4. **📍 Region Info** - View region-specific crop data, seasonal crops, and soil conditions
+1. ** Quick Input** - Manual data entry with region selection & regional confidence adjustment
+2. ** Weather** - Location-based recommendations with regional optimization
+3. ** Bulk** - Upload and process multiple farms with batch regional adjustment
+4. ** Region Info** - View region-specific crop data, seasonal crops, and soil conditions
 
 ### Mobile-Optimized Features:
 ✅ Responsive design for all screen sizes (mobile-first, 500px max-width)  
@@ -135,10 +135,10 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 ✅ Optimal soil condition display  
 
 ### Documentation:
-- 📖 **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - User guide for farmers
-- 🔧 **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Technical specifications
-- 🌍 **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Region-specific recommendations guide
-- 📋 **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Complete technical overview
+-  **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - User guide for farmers
+-  **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Technical specifications
+-  **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Region-specific recommendations guide
+-  **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Complete technical overview
 
 ---
 ## Technologies Used
@@ -226,7 +226,7 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 
 ---
 
-## 🌍 Region-Specific Optimization System
+##  Region-Specific Optimization System
 
 ### Supported Regions (6 Regions)
 
@@ -258,14 +258,14 @@ The system calculates an **adjustment factor** by combining:
 ### Region-Specific Data Points
 
 Each region includes:
-- 🌍 Climate classification
-- 💧 Rainfall range (mm/year)
-- 🌡️ Temperature range (°C)
-- 🥔 Soil types
-- 🌾 Suitable crops (with suitability scores)
-- 📅 Seasonal crops (Rabi, Kharif, Summer)
-- 🌱 Optimal nutrients (N, P, K, pH)
-- 💡 Regional farming tips & best practices
+-  Climate classification
+-  Rainfall range (mm/year)
+-  Temperature range (°C)
+-  Soil types
+-  Suitable crops (with suitability scores)
+-  Seasonal crops (Rabi, Kharif, Summer)
+-  Optimal nutrients (N, P, K, pH)
+-  Regional farming tips & best practices
 
 ### Using Region Optimization
 
@@ -290,7 +290,7 @@ streamlit run streamlit_app.py
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ### Technology Stack
 ```
@@ -351,7 +351,7 @@ User Input (Soil/Weather Data)
 
 ---
 
-## 🚀 Deployment Options
+##  Deployment Options
 
 ### Option 1: Local Development
 ```bash
@@ -405,7 +405,7 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed deployment instructions.
 
 ---
 
-## 📊 Model Performance
+##  Model Performance
 
 - **Accuracy**: ~95% on test data
 - **Precision**: 0.94 (average across crops)
@@ -417,7 +417,7 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed deployment instructions.
 
 ---
 
-## 🎓 How to Use
+##  How to Use
 
 ### For Farmers (Streamlit App)
 1. **Quick Input Tab**: Manually enter soil parameters
@@ -453,7 +453,7 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed deployment instructions.
 
 ---
 
-## 🔧 Customization
+##  Customization
 
 ### Add New Crops
 Edit `region_optimizer.py`:
@@ -479,19 +479,19 @@ Edit `region_optimizer.py` and add to `REGIONS` dictionary with required data fi
 
 ---
 
-## 📖 Documentation
+##  Documentation
 
-- 📘 **[README.md](README.md)** - Project overview & quick start
-- 📕 **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment instructions
-- 📗 **[RUN_APP.md](RUN_APP.md)** - Running the app locally
-- 📙 **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - Mobile app user guide (farmers)
-- 📔 **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Mobile technical specs (developers)
-- 📓 **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Regional recommendations guide
-- 📒 **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Technical summary
+-  **[README.md](README.md)** - Project overview & quick start
+-  **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment instructions
+-  **[RUN_APP.md](RUN_APP.md)** - Running the app locally
+-  **[MOBILE_GUIDE.md](MOBILE_GUIDE.md)** - Mobile app user guide (farmers)
+-  **[MOBILE_TECHNICAL.md](MOBILE_TECHNICAL.md)** - Mobile technical specs (developers)
+-  **[REGION_OPTIMIZATION.md](REGION_OPTIMIZATION.md)** - Regional recommendations guide
+-  **[REGION_IMPLEMENTATION_SUMMARY.md](REGION_IMPLEMENTATION_SUMMARY.md)** - Technical summary
 
 ---
 
-## 💬 Support & Contact
+##  Support & Contact
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
@@ -500,7 +500,7 @@ For issues, questions, or suggestions:
 
 ---
 
-## 📄 License
+##  License
 
 This project is open source and available under the MIT License.
 
@@ -509,7 +509,7 @@ This project is open source and available under the MIT License.
 ## Authors
 
 ANANTHAN S  
-ASHNA JEBIN  
+ASHNA JABIN NK  
 JEEVA B S
 
 **Project**: Crop Recommendation System Using Soil and Climate Data  

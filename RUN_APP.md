@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Streamlit Web App
+#  Quick Start Guide - Streamlit Web App
 
 ## Step 1: Ensure Models are Trained
 
@@ -13,9 +13,9 @@ joblib.dump(le, 'label_encoder.pkl')
 ```
 
 Verify files exist in your project directory:
-- ✅ `model.pkl` (trained Random Forest)
-- ✅ `scaler.pkl` (feature scaler)
-- ✅ `label_encoder.pkl` (crop label encoder)
+-  `model.pkl` (trained Random Forest)
+-  `scaler.pkl` (feature scaler)
+-  `label_encoder.pkl` (crop label encoder)
 
 ---
 
@@ -75,22 +75,22 @@ The app automatically opens in your default browser at:
 
 ---
 
-## 🎯 Using the App
+##  Using the App
 
-### **Mode 1: Manual Input** 📝
+### **Mode 1: Manual Input** 
 1. Adjust sliders for soil nutrients (N, P, K)
 2. Set climate parameters (Temperature, Humidity, pH, Rainfall)
 3. Click "Get Recommendation"
 4. View predicted crop + confidence score
 
-### **Mode 2: Weather API** 🌍
+### **Mode 2: Weather API** 
 1. Enter city name (e.g., "New York")
 2. Enter OpenWeatherMap API key (get free at openweathermap.org)
 3. Input soil parameters
 4. Click "Fetch Weather & Predict"
 5. App fetches real weather data and predicts
 
-### **Mode 3: Bulk CSV Upload** 📤
+### **Mode 3: Bulk CSV Upload** 
 1. Prepare CSV with columns: `N, P, K, temperature, humidity, ph, rainfall`
 2. Upload file
 3. Click "Predict All Crops"
@@ -98,7 +98,7 @@ The app automatically opens in your default browser at:
 
 ---
 
-## 🔑 Getting OpenWeatherMap API Key
+##  Getting OpenWeatherMap API Key
 
 1. Go to [openweathermap.org](https://openweathermap.org/api)
 2. Sign up for free account
@@ -110,7 +110,7 @@ The app automatically opens in your default browser at:
 
 ---
 
-## 📊 Sample CSV Format
+##  Sample CSV Format
 
 Create `crops_data.csv`:
 ```csv
@@ -124,7 +124,7 @@ Then upload in the app!
 
 ---
 
-## ⚙️ Troubleshooting
+##  Troubleshooting
 
 ### **App doesn't start**
 ```bash
@@ -162,7 +162,7 @@ streamlit run streamlit_app.py --server.port=8502
 
 ---
 
-## 🌐 Deploy Online
+##  Deploy Online
 
 ### **Option 1: Streamlit Cloud (Recommended)**
 ```bash
@@ -201,7 +201,7 @@ docker run -p 8501:8501 crop-recommender
 
 ---
 
-## 🎨 Customization
+##  Customization
 
 ### Change App Title/Icon
 Edit `streamlit_app.py`:
@@ -232,7 +232,7 @@ with tab1:
 
 ---
 
-## 📈 Next Steps
+##  Next Steps
 
 - ✅ Test all 3 prediction modes
 - ✅ Deploy to Streamlit Cloud
@@ -243,6 +243,6 @@ with tab1:
 
 ---
 
-**Enjoy your Crop Recommendation Web App! 🌾**
+**Enjoy your Crop Recommendation Web App! **
 
 For more info: [Streamlit Docs](https://docs.streamlit.io)
