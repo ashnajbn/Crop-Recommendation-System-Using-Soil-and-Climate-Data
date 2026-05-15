@@ -12,20 +12,20 @@ This system helps farmers and agricultural planners make **data-driven decisions
 ---
 
 ## Features  
-- 🎯 Machine Learning-based crop recommendations
-- 📱 **Mobile-optimized responsive interface** for smartphones & tablets
-- 🌍 **Region-specific crop optimization** (6 regions with customized recommendations)
-- 🌍 Real-time weather API integration (OpenWeatherMap)
-- 📊 Interactive data visualization and analytics
-- 📤 Bulk prediction capability (CSV upload with regional adjustment)
-- 💾 Model caching for fast predictions
-- 🔒 Secure, offline-capable predictions
-- 📈 Comprehensive accuracy metrics
-- 🌾 Farmer-friendly UI with intuitive controls
-- 🎡 Tab-based navigation for easy mobile access
-- 🌱 Seasonal crop recommendations by region
-- 📍 Regional soil condition guidance (N, P, K, pH optimization)
-- 💡 Region-specific farming tips and best practices  
+-  Machine Learning-based crop recommendations
+-  **Mobile-optimized responsive interface** for smartphones & tablets
+-  **Region-specific crop optimization** (6 regions with customized recommendations)
+-  Real-time weather API integration (OpenWeatherMap)
+-  Interactive data visualization and analytics
+-  Bulk prediction capability (CSV upload with regional adjustment)
+-  Model caching for fast predictions
+-  Secure, offline-capable predictions
+-  Comprehensive accuracy metrics
+-  Farmer-friendly UI with intuitive controls
+-  Tab-based navigation for easy mobile access
+-  Seasonal crop recommendations by region
+-  Regional soil condition guidance (N, P, K, pH optimization)
+-  Region-specific farming tips and best practices  
 
 ---
 
