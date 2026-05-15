@@ -226,7 +226,7 @@ jupyter notebook "Crop_Recommendation_System.ipynb"
 
 ---
 
-## 🌍 Region-Specific Optimization System
+##  Region-Specific Optimization System
 
 ### Supported Regions (6 Regions)
 
@@ -258,14 +258,14 @@ The system calculates an **adjustment factor** by combining:
 ### Region-Specific Data Points
 
 Each region includes:
-- 🌍 Climate classification
-- 💧 Rainfall range (mm/year)
-- 🌡️ Temperature range (°C)
-- 🥔 Soil types
-- 🌾 Suitable crops (with suitability scores)
-- 📅 Seasonal crops (Rabi, Kharif, Summer)
-- 🌱 Optimal nutrients (N, P, K, pH)
-- 💡 Regional farming tips & best practices
+-  Climate classification
+-  Rainfall range (mm/year)
+-  Temperature range (°C)
+-  Soil types
+-  Suitable crops (with suitability scores)
+-  Seasonal crops (Rabi, Kharif, Summer)
+-  Optimal nutrients (N, P, K, pH)
+-  Regional farming tips & best practices
 
 ### Using Region Optimization
 
@@ -290,7 +290,7 @@ streamlit run streamlit_app.py
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ### Technology Stack
 ```
@@ -351,7 +351,7 @@ User Input (Soil/Weather Data)
 
 ---
 
-## 🚀 Deployment Options
+##  Deployment Options
 
 ### Option 1: Local Development
 ```bash
@@ -405,7 +405,7 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed deployment instructions.
 
 ---
 
-## 📊 Model Performance
+##  Model Performance
 
 - **Accuracy**: ~95% on test data
 - **Precision**: 0.94 (average across crops)
@@ -417,7 +417,7 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed deployment instructions.
 
 ---
 
-## 🎓 How to Use
+##  How to Use
 
 ### For Farmers (Streamlit App)
 1. **Quick Input Tab**: Manually enter soil parameters
@@ -453,7 +453,7 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed deployment instructions.
 
 ---
 
-## 🔧 Customization
+##  Customization
 
 ### Add New Crops
 Edit `region_optimizer.py`:
