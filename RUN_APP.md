@@ -77,20 +77,20 @@ The app automatically opens in your default browser at:
 
 ##  Using the App
 
-### **Mode 1: Manual Input** 📝
+### **Mode 1: Manual Input** 
 1. Adjust sliders for soil nutrients (N, P, K)
 2. Set climate parameters (Temperature, Humidity, pH, Rainfall)
 3. Click "Get Recommendation"
 4. View predicted crop + confidence score
 
-### **Mode 2: Weather API** 🌍
+### **Mode 2: Weather API** 
 1. Enter city name (e.g., "New York")
 2. Enter OpenWeatherMap API key (get free at openweathermap.org)
 3. Input soil parameters
 4. Click "Fetch Weather & Predict"
 5. App fetches real weather data and predicts
 
-### **Mode 3: Bulk CSV Upload** 📤
+### **Mode 3: Bulk CSV Upload** 
 1. Prepare CSV with columns: `N, P, K, temperature, humidity, ph, rainfall`
 2. Upload file
 3. Click "Predict All Crops"
@@ -124,7 +124,7 @@ Then upload in the app!
 
 ---
 
-## ⚙️ Troubleshooting
+##  Troubleshooting
 
 ### **App doesn't start**
 ```bash
@@ -243,6 +243,6 @@ with tab1:
 
 ---
 
-**Enjoy your Crop Recommendation Web App! 🌾**
+**Enjoy your Crop Recommendation Web App! **
 
 For more info: [Streamlit Docs](https://docs.streamlit.io)
