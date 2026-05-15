@@ -201,7 +201,7 @@ docker run -p 8501:8501 crop-recommender
 
 ---
 
-## 🎨 Customization
+##  Customization
 
 ### Change App Title/Icon
 Edit `streamlit_app.py`:
@@ -232,7 +232,7 @@ with tab1:
 
 ---
 
-## 📈 Next Steps
+##  Next Steps
 
 - ✅ Test all 3 prediction modes
 - ✅ Deploy to Streamlit Cloud
