@@ -1,4 +1,4 @@
-# 🌾 Crop Recommendation System - Deployment Guide
+#  Crop Recommendation System - Deployment Guide
 
 ## Running the Streamlit App Locally
 
@@ -10,7 +10,7 @@
    - `scaler.pkl`
    - `label_encoder.pkl`
 
-### 1️⃣ Activate Virtual Environment
+### 1️ Activate Virtual Environment
 ```bash
 # PowerShell
 .venv\Scripts\Activate.ps1
@@ -19,7 +19,7 @@
 .venv\Scripts\activate.bat
 ```
 
-### 2️⃣ Run the Streamlit App
+### 2️ Run the Streamlit App
 ```bash
 streamlit run streamlit_app.py
 ```
