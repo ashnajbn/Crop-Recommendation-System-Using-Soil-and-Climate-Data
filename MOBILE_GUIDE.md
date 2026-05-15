@@ -4,7 +4,7 @@
 
 The **Crop Advisor** is now fully optimized for mobile devices, making it easy for farmers to get crop recommendations on-the-go, directly from their smartphones or tablets.
 
-## ✨ Mobile-Friendly Features
+##  Mobile-Friendly Features
 
 ### 1. **Responsive Design**
 - Automatically adapts to any screen size (mobile, tablet, desktop)
@@ -16,9 +16,9 @@ The **Crop Advisor** is now fully optimized for mobile devices, making it easy f
 ### 2. **Simplified Navigation**
 - **Tab-based interface** instead of sidebar (better for mobile)
 - Three main tabs for easy access:
-  - ⚡ **Quick Input** - Manual data entry
-  - 🌍 **Weather** - Location-based recommendations
-  - 📤 **Bulk** - Upload multiple records
+  -  **Quick Input** - Manual data entry
+  -  **Weather** - Location-based recommendations
+  -  **Bulk** - Upload multiple records
 
 ### 3. **Intuitive User Interface**
 - **Green gradient header** with clear branding
@@ -40,9 +40,9 @@ The **Crop Advisor** is now fully optimized for mobile devices, making it easy f
 - Clear hierarchy with bold labels
 - Short, concise instructions
 
-## 📱 How to Use on Mobile
+##  How to Use on Mobile
 
-### Tab 1: ⚡ Quick Input
+### Tab 1:  Quick Input
 
 **Best for:** Quick crop recommendations based on farm conditions
 
@@ -58,7 +58,7 @@ The **Crop Advisor** is now fully optimized for mobile devices, making it easy f
 - Confidence percentage
 - Visual summary cards of all inputs
 
-### Tab 2: 🌍 Weather-Based
+### Tab 2:  Weather-Based
 
 **Best for:** Recommendations based on real-time weather data
 
@@ -74,7 +74,7 @@ The **Crop Advisor** is now fully optimized for mobile devices, making it easy f
 - Recommended crop based on actual weather conditions
 - Confidence score
 
-### Tab 3: 📤 Bulk Upload
+### Tab 3:  Bulk Upload
 
 **Best for:** Multiple farms or field data analysis
 
@@ -90,7 +90,7 @@ N,P,K,temperature,humidity,ph,rainfall
 85,40,40,24.0,65,6.8,110
 ```
 
-## 🎨 Mobile Design Features
+##  Mobile Design Features
 
 ### Color Scheme
 - **Green (#2e7d32, #558b2f)**: Primary agricultural theme
@@ -109,7 +109,7 @@ N,P,K,temperature,humidity,ph,rainfall
 - Offline-capable predictions
 - Progressive enhancement
 
-## 🔧 Technical Improvements
+##  Technical Improvements
 
 ### Removed
 - ❌ Wide "layout" mode (desktop-only)
@@ -125,7 +125,7 @@ N,P,K,temperature,humidity,ph,rainfall
 - ✅ Adaptive typography
 - ✅ Improved card-based design
 
-## 📊 Key Metrics Display
+##  Key Metrics Display
 
 ### Quick Input Tab
 Shows real-time metrics as you adjust sliders:
@@ -143,7 +143,7 @@ Displays live data from OpenWeatherMap:
 - 💧 Humidity  
 - 🌧️ Rainfall amount
 
-## 💡 Tips for Farmers
+##  Tips for Farmers
 
 1. **Quick Recommendations**: Use Quick Input tab for fastest results
 2. **Accurate Soil Data**: Get soil testing done for better accuracy
@@ -152,7 +152,7 @@ Displays live data from OpenWeatherMap:
 5. **Bookmarks**: Save recommendations for future reference
 6. **Share Results**: Download CSV to share with agronomist
 
-## 📱 Browser Support
+##  Browser Support
 
 Works on:
 - ✅ iOS Safari (iPhone 6+)
@@ -160,7 +160,7 @@ Works on:
 - ✅ Android Firefox
 - ✅ Any mobile browser with Streamlit support
 
-## 🌐 Running the App
+##  Running the App
 
 ### Mobile Device (same network):
 ```bash
@@ -177,7 +177,7 @@ streamlit run streamlit_app.py
 - Same URL works on desktop
 - Responsive design adapts automatically
 
-## 🔐 Privacy & Data
+##  Privacy & Data
 
 - ✅ All computations happen locally
 - ✅ No data stored on servers
@@ -185,7 +185,7 @@ streamlit run streamlit_app.py
 - ✅ CSV uploads not saved
 - ✅ Safe to use offline (after initial load)
 
-## ⚠️ Disclaimer
+##  Disclaimer
 
 This tool provides agricultural guidance based on the trained ML model. For critical decisions:
 - Consult local agricultural experts
@@ -193,17 +193,17 @@ This tool provides agricultural guidance based on the trained ML model. For crit
 - Consider local climate variations
 - Perform soil testing before major investments
 
-## 🚀 Future Enhancements
+##  Future Enhancements
 
 Potential mobile features:
-- 📸 Camera-based soil analysis
-- 🎤 Voice input for literacy support
-- 💾 Local data caching
-- 🗺️ Multi-location tracking
-- 📈 Historical trend analysis
-- 🔔 Smart push notifications
+-  Camera-based soil analysis
+-  Voice input for literacy support
+-  Local data caching
+-  Multi-location tracking
+-  Historical trend analysis
+-  Smart push notifications
 
-## 📞 Support
+##  Support
 
 For issues or feedback:
 - Check recommendations against local data
