@@ -509,7 +509,7 @@ This project is open source and available under the MIT License.
 ## Authors
 
 ANANTHAN S  
-ASHNA JABIN NK 
+ASHNA JABIN NK  
 JEEVA B S
 
 **Project**: Crop Recommendation System Using Soil and Climate Data  
